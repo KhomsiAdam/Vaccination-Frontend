@@ -1,5 +1,5 @@
+/*eslint-disable*/
 import { Routes, Route } from 'react-router-dom';
-
 import { Layout, PersistLogin, RequireAuth } from '@/components';
 import {
   Register,
@@ -9,6 +9,7 @@ import {
   Admin,
   NotFound,
   Unauthorized,
+  MultiStep,
 } from '@/pages';
 
 const ROLES = {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         {/* public routes */}
         <Route path="login" element={<Login />} />
+        <Route path="step" element={<MultiStep />} />
         <Route path="register" element={<Register />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
