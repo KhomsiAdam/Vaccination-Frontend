@@ -1,53 +1,25 @@
 /*eslint-disable*/
 import { Routes, Route } from 'react-router-dom';
-import { Layout, PersistLogin, RequireAuth } from '@/components';
+import { Layout } from '@/components';
 import {
-  Register,
-  Login,
   Home,
-  User,
-  Admin,
   NotFound,
-  Unauthorized,
-  MultiStep,
 } from '@/pages';
-
-const ROLES = {
-  User: 'User',
-  Admin: 'Admin',
-};
+import { StepProvider } from './context/StepContext';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        {/* public routes */}
-        <Route path="login" element={<Login />} />
-        <Route path="step" element={<MultiStep />} />
-        <Route path="register" element={<Register />} />
-        <Route path="unauthorized" element={<Unauthorized />} />
+    <StepProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* public routes */}
+          <Route path="/" element={<Home />} />
 
-        {/* we want to protect these routes */}
-        <Route element={<PersistLogin />}>
-          <Route
-            element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}
-          >
-            <Route path="/" element={<Home />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="/*" element={<User />} />
-          </Route>
-
-          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-            <Route path="admin/*" element={<Admin />} />
-          </Route>
+          {/* catch all */}
+          <Route path="*" element={<NotFound />} />
         </Route>
-
-        {/* catch all */}
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </StepProvider>
   );
 }
 
