@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useState } from 'react';
 
@@ -8,7 +9,6 @@ export function StepProvider({ children }) {
 
   const completeFormStep = () => {
     setFormStep((cur) => cur + 1);
-    console.log(formStep);
   };
 
   return (
