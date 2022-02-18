@@ -27,20 +27,20 @@ export function VaccinForm() {
       }
     );
 
-    if (response?.data?.vaccine) {
+    if (response?.data?.vaccination) {
       setIsVaccinated(true);
-      console.log(isVaccinated);
+      console.log(`test : ${isVaccinated}`);
     } else {
       completeFormStep();
     }
 
-    console.log(response?.data);
+    console.log(response?.data.message);
   };
 
   console.log(vaccination);
   return (
     <section className="bg-gray-100">
-      <h2 className="font-semibold text-3xl mb-8">Vaccination Information</h2>
+      <h2 className="text-gray-500 font-semibold text-3xl mb-8">Vaccination Information</h2>
       <form>
         <ul className="grid grid-cols-3 gap-x-5 m-10 max-w-md mx-auto">
           <li className="relative">
@@ -54,14 +54,14 @@ export function VaccinForm() {
               id="vaccin1"
             />
             <label
-              className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-green-500 peer-checked:ring-2 peer-checked:border-transparent"
+              className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50  peer-checked:ring-red-500 peer-checked:ring-2 peer-checked:border-transparent"
               htmlFor="vaccin1"
             >
               Vaccin 1
             </label>
 
             <div className="absolute hidden w-5 h-5 peer-checked:block top-10 right-3">
-              👍
+              
             </div>
           </li>
           <li className="relative">
@@ -75,14 +75,14 @@ export function VaccinForm() {
               id="vaccin2"
             />
             <label
-              className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-red-500 peer-checked:ring-2 peer-checked:border-transparent"
+              className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray- peer-checked:ring-yellow-500  peer-checked:ring-2 peer-checked:border-transparent"
               htmlFor="vaccin2"
             >
               Vaccin 2
             </label>
 
             <div className="absolute hidden w-5 h-5 peer-checked:block top-10 right-3">
-              👍
+              
             </div>
           </li>
 
@@ -97,14 +97,14 @@ export function VaccinForm() {
               id="vaccin3"
             />
             <label
-              className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-yellow-500 peer-checked:ring-2 peer-checked:border-transparent"
+              className="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-green-500 peer-checked:ring-2 peer-checked:border-transparent"
               htmlFor="vaccin3"
             >
               Vaccin 3
             </label>
 
             <div className="absolute hidden w-5 h-5 peer-checked:block top-10 right-3">
-              👍
+              
             </div>
           </li>
         </ul>

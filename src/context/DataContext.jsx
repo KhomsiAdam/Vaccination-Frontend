@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useState, useEffect, useRef } from 'react';
 
@@ -11,6 +12,18 @@ export function DataProvider({ children }) {
   const [vaccination, setVaccination] = useState('');
   const vaccinationRef = useRef();
   const [isVaccinated, setIsVaccinated] = useState(false);
+  const [name, setName] = useState('');
+  const nameRef = useRef();
+  const [phone, setPhone] = useState('');
+  const phoneRef = useRef();
+  const [zipcode, setZipcode] = useState('');
+  const zipcodeRef = useRef();
+  const [city, setCity] = useState('');
+  const cityRef = useRef();
+  const [address, setAddress] = useState('');
+  const addressRef = useRef();
+  const [email, setEmail] = useState('');
+  const emailRef = useRef();
 
   useEffect(() => {
     localStorage.setItem('vaccination', vaccination);
@@ -30,6 +43,24 @@ export function DataProvider({ children }) {
         vaccinationRef,
         isVaccinated,
         setIsVaccinated,
+        name,
+        nameRef,
+        setName,
+        phone,
+        phoneRef,
+        setPhone,
+        zipcode,
+        zipcodeRef,
+        setZipcode,
+        city,
+        cityRef,
+        setCity,
+        address,
+        addressRef,
+        setAddress,
+        email,
+        emailRef,
+        setEmail
       }}
     >
       {children}
