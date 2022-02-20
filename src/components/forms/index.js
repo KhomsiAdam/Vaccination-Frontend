@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
 export { CinForm } from './CinForm';
 export { VaccinForm } from './VaccinForm';
-export { DeseaseForm } from './DeseaseForm';
+export { DiseaseForm } from './DiseaseForm';
 export { PersonalInfo } from './PersonalInfo';

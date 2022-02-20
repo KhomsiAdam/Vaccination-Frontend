@@ -16,8 +16,8 @@ export function DataProvider({ children }) {
   const nameRef = useRef();
   const [phone, setPhone] = useState('');
   const phoneRef = useRef();
-  const [zipcode, setZipcode] = useState('');
-  const zipcodeRef = useRef();
+  const [zipCode, setZipCode] = useState('');
+  const zipCodeRef = useRef();
   const [city, setCity] = useState('');
   const cityRef = useRef();
   const [address, setAddress] = useState('');
@@ -49,9 +49,9 @@ export function DataProvider({ children }) {
         phone,
         phoneRef,
         setPhone,
-        zipcode,
-        zipcodeRef,
-        setZipcode,
+        zipCode,
+        zipCodeRef,
+        setZipCode,
         city,
         cityRef,
         setCity,
