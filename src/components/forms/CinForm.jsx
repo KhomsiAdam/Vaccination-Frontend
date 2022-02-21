@@ -3,9 +3,21 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import DataContext from '@/context/DataContext';
 import StepContext from '@/context/StepContext';
+import { axiosPrivate } from '@/api/axios';
+
+const VERIFY_ENPOINT = '/verify';
 
 export function CinForm() {
-  const { cin, cinRef, setCin, age, ageRef, setAge } = useContext(DataContext);
+  const {
+    cin,
+    cinRef,
+    setCin,
+    age,
+    ageRef,
+    setAge,
+    vaccination,
+    setVaccination,
+  } = useContext(DataContext);
   const { completeFormStep } = useContext(StepContext);
   const [disable, setDisable] = useState(true);
   const {
@@ -19,6 +31,30 @@ export function CinForm() {
   function handleChange(event) {
     setDisable(event.target.value === '');
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axiosPrivate.post(
+      VERIFY_ENPOINT,
+      JSON.stringify({ cin }),
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
+
+    if (response?.data?.vaccine) {
+      setVaccination(response?.data?.vaccine);
+      console.log(response?.data.message);
+      console.log(`vaccine set to: ${vaccination}`);
+      completeFormStep();
+    } else {
+      setVaccination('');
+      console.log(response?.data.message);
+      console.log(`vaccine set to: ${vaccination}`);
+      completeFormStep();
+    }
+  };
 
   return (
     <section className="bg-gray-100">
@@ -68,7 +104,7 @@ export function CinForm() {
 
         <button
           disabled={disable}
-          onClick={completeFormStep}
+          onClick={handleSubmit}
           type="button"
           className="mt-6 bg-cyan-500 text-white rounded px-8 py-6 w-full disabled:bg-gray-400 disabled:cursor-not-allowed"
         >

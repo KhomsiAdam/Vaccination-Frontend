@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DataProvider, DataContext } from '@/context/DataContext';
 import { StepContext } from '@/context/StepContext';
 import {
@@ -11,9 +11,8 @@ import {
 export function Home() {
   const MAX_STEP = 4;
   const { formStep, setFormStep } = useContext(StepContext);
-  const { isVaccinated } = useContext(DataContext);
-  console.log(formStep);
-  console.log(isVaccinated);
+  const { vaccination } = useContext(DataContext);
+  console.log(`form step: ${formStep}`);
 
   // eslint-disable-next-line no-unused-vars
   const goToPreviousStep = () => {
@@ -48,7 +47,7 @@ export function Home() {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    className="h-6 w-6 w-5 text-gray-200 hover:text-gray-400 mr-2"
+                    className="h-6 w-6 text-gray-200 hover:text-gray-400 mr-2"
                   >
                     <path
                       strokeLinecap="round"
@@ -63,12 +62,11 @@ export function Home() {
                 {formStep + 1} of {MAX_STEP}
               </p>
             </div>
-
             {formStep === 0 && <CinForm />}
-            {formStep === 1 && <VaccinForm />}
-            {formStep === 2 && <DiseaseForm />}
-            {formStep === 3 && <PersonalInfo />}
-            {formStep === 4 && (
+            {/* {formStep === 1 && <VaccinForm />} */}
+            {formStep === 1 && <DiseaseForm />}
+            {formStep === 2 && <PersonalInfo />}
+            {formStep === 3 && (
               <section className="bg-gray-100">
                 <h2 className="font-semibold text-3xl mb-8">Completed</h2>
               </section>

@@ -6,14 +6,7 @@ import { axiosPrivate } from '@/api/axios';
 const VERIFY_ENPOINT = '/verify';
 
 export function VaccinForm() {
-  const {
-    cin,
-    vaccination,
-    setVaccination,
-    vaccinationRef,
-    isVaccinated,
-    setIsVaccinated,
-  } = useContext(DataContext);
+  const { cin, vaccination, setVaccination } = useContext(DataContext);
   const { completeFormStep } = useContext(StepContext);
 
   const handleSubmit = async (e) => {
@@ -28,16 +21,15 @@ export function VaccinForm() {
     );
 
     if (response?.data?.vaccination) {
-      setIsVaccinated(true);
-      console.log(`test : ${isVaccinated}`);
-    } else {
+      setVaccination(response?.data?.vaccination);
+      console.log(`vaccine: ${vaccination}`);
+      completeFormStep();
+    } else if (response?.data?.message === 'You are not vaccinated.') {
+      console.log(response?.data.message);
       completeFormStep();
     }
-
-    console.log(response?.data.message);
   };
 
-  console.log(vaccination);
   return (
     <section className="bg-gray-100">
       <h2 className="text-gray-500 font-semibold text-3xl mb-8">
@@ -50,8 +42,8 @@ export function VaccinForm() {
               className="sr-only peer"
               type="radio"
               value="vaccin1"
-              ref={vaccinationRef}
-              onClick={(e) => setVaccination(e.target.value)}
+              // ref={vaccinationRef}
+              // onClick={(e) => setVaccination(e.target.value)}
               name="vaccination"
               id="vaccin1"
             />
@@ -69,8 +61,8 @@ export function VaccinForm() {
               className="sr-only peer"
               type="radio"
               value="vaccin2"
-              ref={vaccinationRef}
-              onClick={(e) => setVaccination(e.target.value)}
+              // ref={vaccinationRef}
+              // onClick={(e) => setVaccination(e.target.value)}
               name="vaccination"
               id="vaccin2"
             />
@@ -89,8 +81,8 @@ export function VaccinForm() {
               className="sr-only peer"
               type="radio"
               value="vaccin3"
-              ref={vaccinationRef}
-              onClick={(e) => setVaccination(e.target.value)}
+              // ref={vaccinationRef}
+              // onClick={(e) => setVaccination(e.target.value)}
               name="vaccination"
               id="vaccin3"
             />
