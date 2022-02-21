@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { createContext, useState, useEffect, useRef } from 'react';
+import { createContext, useState, useRef } from 'react';
 
 export const DataContext = createContext({});
 
@@ -11,7 +10,6 @@ export function DataProvider({ children }) {
   const ageRef = useRef();
   const [vaccination, setVaccination] = useState('');
   const vaccinationRef = useRef();
-  const [isVaccinated, setIsVaccinated] = useState(false);
   const [name, setName] = useState('');
   const nameRef = useRef();
   const [phone, setPhone] = useState('');
@@ -25,9 +23,11 @@ export function DataProvider({ children }) {
   const [email, setEmail] = useState('');
   const emailRef = useRef();
 
-  useEffect(() => {
-    localStorage.setItem('vaccination', vaccination);
-  }, [vaccination]);
+  const [isSideEffect, setIsSideEffect] = useState(false);
+
+  // useEffect(() => {
+  //   localStorage.setItem('vaccination', vaccination);
+  // }, [vaccination]);
 
   return (
     <DataContext.Provider
@@ -41,8 +41,6 @@ export function DataProvider({ children }) {
         vaccination,
         setVaccination,
         vaccinationRef,
-        isVaccinated,
-        setIsVaccinated,
         name,
         nameRef,
         setName,
@@ -60,7 +58,9 @@ export function DataProvider({ children }) {
         setAddress,
         email,
         emailRef,
-        setEmail
+        setEmail,
+        isSideEffect,
+        setIsSideEffect,
       }}
     >
       {children}
