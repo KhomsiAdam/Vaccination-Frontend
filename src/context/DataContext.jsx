@@ -22,6 +22,7 @@ export function DataProvider({ children }) {
   const addressRef = useRef();
   const [email, setEmail] = useState('');
   const emailRef = useRef();
+  const [appointment, setAppointment] = useState('');
 
   const [isSideEffect, setIsSideEffect] = useState(false);
 
@@ -59,6 +60,8 @@ export function DataProvider({ children }) {
         email,
         emailRef,
         setEmail,
+        appointment,
+        setAppointment,
         isSideEffect,
         setIsSideEffect,
       }}
