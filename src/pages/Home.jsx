@@ -1,17 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { DataProvider, DataContext } from '@/context/DataContext';
 import { StepContext } from '@/context/StepContext';
 import {
   CinForm,
-  VaccinForm,
   DiseaseForm,
   PersonalInfo,
+  Completed,
 } from '@/components/forms';
 
 export function Home() {
   const MAX_STEP = 4;
   const { formStep, setFormStep } = useContext(StepContext);
-  const { vaccination } = useContext(DataContext);
   console.log(`form step: ${formStep}`);
 
   // eslint-disable-next-line no-unused-vars
@@ -19,6 +18,7 @@ export function Home() {
     // eslint-disable-next-line no-undef
     setFormStep((cur) => cur - 1);
   };
+
   return (
     <DataProvider>
       <div className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-start text-gray-900 antialiased ">
@@ -66,11 +66,7 @@ export function Home() {
             {/* {formStep === 1 && <VaccinForm />} */}
             {formStep === 1 && <DiseaseForm />}
             {formStep === 2 && <PersonalInfo />}
-            {formStep === 3 && (
-              <section className="bg-gray-100">
-                <h2 className="font-semibold text-3xl mb-8">Completed</h2>
-              </section>
-            )}
+            {formStep === 3 && <Completed />}
           </div>
         </div>
       </div>
