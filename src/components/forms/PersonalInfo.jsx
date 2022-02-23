@@ -49,18 +49,8 @@ export function PersonalInfo() {
       const response = await axios.get(
         'https://calm-fjord-14795.herokuapp.com/api/regions'
       );
-      // const data = await response.json();
-      console.log(response.data);
       setRegions(response.data);
 
-    //   return async() => {
-    //     const response = await axios.get(
-    //       'https://calm-fjord-14795.herokuapp.com/api/regions'
-    //     );
-    //     // const data = await response.json();
-    //     console.log(response.data);
-    //     setRegions(response.data);
-    // };
     
   }, [setRegions]);
 
@@ -71,7 +61,6 @@ export function PersonalInfo() {
     const response = await axios.get(
       `https://calm-fjord-14795.herokuapp.com/api/villes/${e.target.value}`
     );
-    console.log(response.data);
     setCities(response.data);
   }
 
