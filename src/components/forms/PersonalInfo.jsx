@@ -17,6 +17,9 @@ export function PersonalInfo() {
   const [centers, setCenters] = useState('');
   const [selectedCenter, setSelectedCenter] = useState('');
 
+  const [delayed, setDelayed] = useState('1991-12-03');
+  const [notDelayed, setNotDelayed] = useState('2000-12-03');
+
   const { completeFormStep } = useContext(StepContext);
   const {
     cin,
@@ -41,6 +44,7 @@ export function PersonalInfo() {
     setEmail,
     vaccination,
     setAppointment,
+    isSideEffect,
   } = useContext(DataContext);
 
   const {
@@ -90,7 +94,9 @@ export function PersonalInfo() {
     moment.addRealMonth = function addRealMonth(d) {
       const fm = moment(d).add(1, 'M');
       const fmEnd = moment(fm).endOf('month');
-      return d.date() !== fm.date() && fm.isSame(fmEnd.format('YYYY-MM-DD')) ? fm.add(1, 'd') : fm;
+      return d.date() !== fm.date() && fm.isSame(fmEnd.format('YYYY-MM-DD'))
+        ? fm.add(1, 'd')
+        : fm;
     };
     const nextMonth = moment.addRealMonth(moment());
     setAppointment(nextMonth.format('MMMM Do YYYY'));
@@ -338,7 +344,8 @@ export function PersonalInfo() {
               <option className="text-green-600 focus:outline-none" disabled>
                 Select your center
               </option>
-              {centers && !centers.message &&
+              {centers &&
+                !centers.message &&
                 centers.map((center) => (
                   <option value={center.center} key={center._id}>
                     {center.center}{' '}
@@ -356,7 +363,23 @@ export function PersonalInfo() {
           </button>
         </>
       ) : (
-        <div>Your next appointment is set to:</div>
+        <section className="bg-gray-100">
+          {isSideEffect ? (
+            <>
+              <h2 className="font-semibold text-3xl mb-8">Completed</h2>
+              <p className="text-center">
+                Your appointment is delayed by another month: {delayed}
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 className="font-semibold text-3xl mb-8">Completed</h2>
+              <p className="text-center">
+                Your appointment is planned next month: {notDelayed}
+              </p>
+            </>
+          )}
+        </section>
       )}
     </section>
   );

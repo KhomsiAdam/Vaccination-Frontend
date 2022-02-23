@@ -63,7 +63,6 @@ export function Home() {
               </p>
             </div>
             {formStep === 0 && <CinForm />}
-            {/* {formStep === 1 && <VaccinForm />} */}
             {formStep === 1 && <DiseaseForm />}
             {formStep === 2 && <PersonalInfo />}
             {formStep === 3 && <Completed />}
