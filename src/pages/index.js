@@ -5,3 +5,4 @@ export { NotFound } from './NotFound';
 export { Register } from './Register';
 export { Unauthorized } from './Unauthorized';
 export { User } from './User';
+export { Dashboard } from './Dashboard';
