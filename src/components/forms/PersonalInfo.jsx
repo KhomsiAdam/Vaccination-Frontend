@@ -17,8 +17,8 @@ export function PersonalInfo() {
   const [centers, setCenters] = useState('');
   const [selectedCenter, setSelectedCenter] = useState('');
 
-  const [delayed, setDelayed] = useState('1991-12-03');
-  const [notDelayed, setNotDelayed] = useState('2000-12-03');
+  // const [delayed, setDelayed] = useState('1991-12-03');
+  // const [notDelayed, setNotDelayed] = useState('2000-12-03');
 
   const { completeFormStep } = useContext(StepContext);
   const {
@@ -43,6 +43,7 @@ export function PersonalInfo() {
     emailRef,
     setEmail,
     vaccination,
+    appointment,
     setAppointment,
     isSideEffect,
   } = useContext(DataContext);
@@ -366,14 +367,14 @@ export function PersonalInfo() {
             <>
               <h2 className="font-semibold text-3xl mb-8">Completed</h2>
               <p className="text-center">
-                Your appointment is delayed by another month: {delayed}
+                Your appointment is delayed by another month: {appointment}
               </p>
             </>
           ) : (
             <>
               <h2 className="font-semibold text-3xl mb-8">Completed</h2>
               <p className="text-center">
-                Your appointment is planned next month: {notDelayed}
+                Your appointment is planned next month: {appointment}
               </p>
             </>
           )}
