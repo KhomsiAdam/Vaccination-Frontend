@@ -132,13 +132,13 @@ export function PersonalInfo() {
     <section className="bg-gray-100">
       {vaccination === '' ? (
         <>
-          <h2 className=" text-gray-500 font-semibold text-3xl mb-8">
+          <h2 className="mb-8 text-3xl font-semibold text-gray-500 ">
             Personal Information
           </h2>
-          <div className="flex flex-col space-y-2 w-full">
+          <div className="flex flex-col w-full space-y-2">
             <label
               htmlFor="name"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Name
             </label>
@@ -153,14 +153,14 @@ export function PersonalInfo() {
               onChange={(e) => setName(e.target.value)}
               value={name}
               placeholder="name"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             {errors.name && (
-              <p className="text-red-600 text-sm mt-2">{errors.name.message}</p>
+              <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
             )}
             <label
               htmlFor="cin"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Cin
             </label>
@@ -171,12 +171,12 @@ export function PersonalInfo() {
               value={cin}
               placeholder="cin"
               readOnly
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
 
             <label
               htmlFor="birthday"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Birthday
             </label>
@@ -187,11 +187,11 @@ export function PersonalInfo() {
               value={age}
               readOnly
               placeholder="birthday"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             <label
               htmlFor="phone"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Phone
             </label>
@@ -206,17 +206,17 @@ export function PersonalInfo() {
               onChange={(e) => setPhone(e.target.value)}
               value={phone}
               placeholder="phone"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             {errors.phone && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.phone.message}
               </p>
             )}
 
             <label
               htmlFor="zipcode"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Zip Code
             </label>
@@ -231,16 +231,16 @@ export function PersonalInfo() {
               onChange={(e) => setZipCode(e.target.value)}
               value={zipCode}
               placeholder="zipcode"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             {errors.zipcode && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.zipcode.message}
               </p>
             )}
             <label
               htmlFor="city"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               City
             </label>
@@ -255,14 +255,14 @@ export function PersonalInfo() {
               onChange={(e) => setCity(e.target.value)}
               value={city}
               placeholder="City"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             {errors.city && (
-              <p className="text-red-600 text-sm mt-2">{errors.city.message}</p>
+              <p className="mt-2 text-sm text-red-600">{errors.city.message}</p>
             )}
             <label
               htmlFor="address"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Address
             </label>
@@ -277,16 +277,16 @@ export function PersonalInfo() {
               onChange={(e) => setAddress(e.target.value)}
               value={address}
               placeholder="address"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             {errors.address && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.address.message}
               </p>
             )}
             <label
               htmlFor="email"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Email
             </label>
@@ -301,22 +301,22 @@ export function PersonalInfo() {
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               placeholder="Email"
-              className="px-4 py-2 rounded-lg border border-green-500 text-green-600 placeholder-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+              className="px-4 py-2 text-green-600 placeholder-green-600 border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-200"
             />
             {errors.email && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.email.message}
               </p>
             )}
 
             <label
               htmlFor="phone"
-              className="text-gray-700 select-none font-medium"
+              className="font-medium text-gray-700 select-none"
             >
               Select Region and city for appointment
             </label>
             <select
-              className="select w-full max-w-xs select-accent text-green-600 bg-white"
+              className="w-full text-green-600 bg-white select select-accent"
               onChange={(e) => handleChange(e)}
               defaultValue="Select your region"
             >
@@ -331,7 +331,7 @@ export function PersonalInfo() {
                 ))}
             </select>
             <select
-              className="select w-full max-w-xs select-accent text-green-600 bg-white"
+              className="w-full text-green-600 bg-white select select-accent"
               {...register('center', {
                 required: { value: true, message: 'Please select a center' },
               })}
@@ -356,7 +356,7 @@ export function PersonalInfo() {
           <button
             onClick={handleSubmit}
             type="button"
-            className="mt-6 bg-cyan-500 text-white rounded px-8 py-6 w-full disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full px-8 py-6 mt-6 text-white rounded bg-cyan-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             Complete
           </button>
@@ -365,14 +365,14 @@ export function PersonalInfo() {
         <section className="bg-gray-100">
           {isSideEffect ? (
             <>
-              <h2 className="font-semibold text-3xl mb-8">Completed</h2>
+              <h2 className="mb-8 text-3xl font-semibold">Completed</h2>
               <p className="text-center">
                 Your appointment is delayed by another month: {appointment}
               </p>
             </>
           ) : (
             <>
-              <h2 className="font-semibold text-3xl mb-8">Completed</h2>
+              <h2 className="mb-8 text-3xl font-semibold">Completed</h2>
               <p className="text-center">
                 Your appointment is planned next month: {appointment}
               </p>

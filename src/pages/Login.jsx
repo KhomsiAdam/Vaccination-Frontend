@@ -1,7 +1,8 @@
 /*eslint-disable*/
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks';
+import DataContext from '@/context/DataContext';
 
 import { axiosPrivate } from '@/api/axios';
 
@@ -20,6 +21,8 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
+
+  const { setAdminRegion } = useContext(DataContext);
 
   // useEffect(() => {
   //   userRef.current.focus();
@@ -44,6 +47,8 @@ export function Login() {
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.token;
       const roles = response?.data?.role;
+      console.log(response?.data);
+      // setAdminRegion(response?.data?.region);
       setAuth({ email, password, roles, accessToken });
       setEmail('');
       setPassword('');
@@ -72,17 +77,17 @@ export function Login() {
 
   return (
     // <div className="h-screen mx-2 md:flex md:w-[500px]">
-    //   <div className="flex md:w-1/2 justify-center rounded-lg items-center bg-white">
-    //     <form className="bg-white p-6" onSubmit={handleSubmit}>
-    //       <h1 className="text-gray-800 font-bold text-2xl mb-1">
+    //   <div className="flex items-center justify-center bg-white rounded-lg md:w-1/2">
+    //     <form className="p-6 bg-white" onSubmit={handleSubmit}>
+    //       <h1 className="mb-1 text-2xl font-bold text-gray-800">
     //         Hello Again!
     //       </h1>
     //       <p className="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
 
-    //       <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4 ">
+    //       <div className="flex items-center px-3 py-2 mb-4 border-2 rounded-2xl ">
     //         <svg
     //           xmlns="http://www.w3.org/2000/svg"
-    //           className="h-5 w-5"
+    //           className="w-5 h-5"
     //           viewBox="0 0 20 20"
     //           fill="currentColor"
     //         >
@@ -93,7 +98,7 @@ export function Login() {
     //           />
     //         </svg>
     //         <input
-    //           className="pl-2 outline-none border-none"
+    //           className="pl-2 border-none outline-none"
     //           type="email"
     //           id="email"
     //           name="email"
@@ -105,10 +110,10 @@ export function Login() {
     //           placeholder="Email Address"
     //         />
     //       </div>
-    //       <div className="flex items-center border-2 py-2 px-3 rounded-2xl">
+    //       <div className="flex items-center px-3 py-2 border-2 rounded-2xl">
     //         <svg
     //           xmlns="http://www.w3.org/2000/svg"
-    //           className="h-5 w-5 text-gray-400"
+    //           className="w-5 h-5 text-gray-400"
     //           viewBox="0 0 20 20"
     //           fill=""
     //         >
@@ -119,7 +124,7 @@ export function Login() {
     //           />
     //         </svg>
     //         <input
-    //           className="pl-2 outline-none border-none"
+    //           className="pl-2 border-none outline-none"
     //           type="password"
     //           id="password"
     //           name="password"
@@ -140,68 +145,69 @@ export function Login() {
     //       </div>
     //       <button
     //         type="submit"
-    //         className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+    //         className="block w-full py-2 mt-4 mb-2 font-semibold text-white bg-indigo-600 rounded-2xl"
     //       >
     //         Login
     //       </button>
     //     </form>
     //   </div>
     // </div>
-
-    <section>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          className="input"
-          type="email"
-          id="email"
-          name="email"
-          ref={userRef}
-          autoComplete="off"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          className="input"
-          type="password"
-          id="password"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          required
-        />
-        <button className="btn-primary" type="submit">
-          Sign In
-        </button>
-        <div className="persistCheck">
+    <main className="login md:w-1/4 md:container md:mx-autoax">
+      <section>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email:</label>
           <input
-            type="checkbox"
-            id="persist"
-            onChange={togglePersist}
-            checked={persist}
+            className="input"
+            type="email"
+            id="email"
+            name="email"
+            ref={userRef}
+            autoComplete="off"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
           />
-          <label htmlFor="persist">Remember me</label>
-        </div>
-        <p
-          ref={errRef}
-          className="text-center text-red-600"
-          aria-live="assertive"
-        >
-          {errMsg}
+
+          <label htmlFor="password">Password:</label>
+          <input
+            className="input"
+            type="password"
+            id="password"
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            required
+          />
+          <button className="btn-primary" type="submit">
+            Sign In
+          </button>
+          <div className="persistCheck">
+            <input
+              type="checkbox"
+              id="persist"
+              onChange={togglePersist}
+              checked={persist}
+            />
+            <label htmlFor="persist">Remember me</label>
+          </div>
+          <p
+            ref={errRef}
+            className="text-center text-red-600"
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
+        </form>
+        <p className="my-2 text-center">
+          Not having an Account?
+          <br />
+          <span className="line">
+            <Link to="/register" className="text-blue-500 hover:underline">
+              Sign Up
+            </Link>
+          </span>
         </p>
-      </form>
-      <p className="my-2 text-center">
-        Not having an Account?
-        <br />
-        <span className="line">
-          <Link to="/register" className="text-blue-500 hover:underline">
-            Sign Up
-          </Link>
-        </span>
-      </p>
-    </section>
+      </section>
+    </main>
   );
 }
