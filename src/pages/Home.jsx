@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { DataProvider, DataContext } from '@/context/DataContext';
+import { DataProvider } from '@/context/DataContext';
 import { StepContext } from '@/context/StepContext';
 import {
   CinForm,

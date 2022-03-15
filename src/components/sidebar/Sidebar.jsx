@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-export default function Sidebar() {
+export function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
 
 const handleLogout = ()=>{
@@ -195,3 +195,5 @@ const handleLogout = ()=>{
     </>
   );
 }
+
+export default Sidebar;

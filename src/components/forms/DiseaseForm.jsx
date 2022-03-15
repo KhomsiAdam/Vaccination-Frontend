@@ -2,13 +2,16 @@
 import { useContext, useState, useRef } from 'react';
 // import { useForm } from 'react-hook-form';
 // import DataContext from '@/context/DataContext';
+import moment from 'moment';
 import diseases from '@/data/diseasesData';
 import StepContext from '@/context/StepContext';
 import DataContext from '@/context/DataContext';
+import { axiosPrivate } from '@/api/axios';
 
 export function DiseaseForm() {
   const { completeFormStep } = useContext(StepContext);
-  const { vaccination, setIsSideEffect } = useContext(DataContext);
+  const { cin, vaccination, isSideEffect, setIsSideEffect, setAppointment } =
+    useContext(DataContext);
   const [selects, setSelects] = useState();
   const [isCheck, setIsCheck] = useState(false);
   const isCheckRef = useRef();
@@ -30,6 +33,56 @@ export function DiseaseForm() {
 
   const healthCheck = () => {
     if (!isCheck) completeFormStep();
+  };
+
+  const sideEffectCheck = async () => {
+    console.log(moment());
+    const appointResponse = await axiosPrivate.post(
+      '/appoint',
+      JSON.stringify({
+        cin,
+      }),
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
+    if (appointResponse) {
+      if (isSideEffect) {
+        moment.addRealMonth = function addRealMonth(d) {
+          const fm = moment(d).add(1, 'M');
+          const fmEnd = moment(fm).endOf('month');
+          return d.date() !== fm.date() && fm.isSame(fmEnd.format('YYYY-MM-DD'))
+            ? fm.add(1, 'd')
+            : fm;
+        };
+        const nextMonth = moment.addRealMonth(
+          moment(appointResponse.data.appointment)
+        );
+        setAppointment(nextMonth.format('MMMM Do YYYY'));
+        const response = await axiosPrivate.post(
+          '/sideeffect',
+          JSON.stringify({
+            cin,
+            SideEffects: isSideEffect,
+            appointment: nextMonth.format(),
+          }),
+          {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+          }
+        );
+        if (response) {
+          console.log(response.data);
+          completeFormStep();
+        }
+      } else {
+        setAppointment(
+          moment(appointResponse.data.appointment).format('MMMM Do YYYY')
+        );
+        completeFormStep();
+      }
+    }
   };
 
   return (
@@ -157,7 +210,8 @@ export function DiseaseForm() {
             </li>
           </ul>
           <button
-            onClick={completeFormStep}
+            onClick={sideEffectCheck}
+            // onClick={completeFormStep}
             type="button"
             className="mt-6 bg-cyan-500 text-white rounded px-8 py-6 w-full disabled:bg-gray-400 disabled:cursor-not-allowed"
           >

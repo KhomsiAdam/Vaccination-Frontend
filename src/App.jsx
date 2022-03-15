@@ -8,6 +8,7 @@ import { PersistLogin } from './components/PersistLogin';
 
 const ROLES = {
   Admin: 'Admin',
+  Manager: 'Manager',
   User: 'User',
 };
 
@@ -21,7 +22,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route element={<PersistLogin />}>
-            <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+            <Route element={<RequireAuth allowedRoles={[ROLES.Manager]} />}>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
           </Route>
